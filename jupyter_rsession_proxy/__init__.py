@@ -33,12 +33,18 @@ def setup_rserver():
 
     def _get_cmd(port):
         ntf = NamedTemporaryFile(prefix='/tmp/')
-        return [
+        cmd = [
             get_rstudio_executable('rserver'),
             '--www-port=' + str(port),
             '--www-frame-origin=same',
             '--secure-cookie-key-file=' + ntf.name
         ]
+        
+        config_file = os.getenv('RSERVER_CONFIG')
+        if config_file is not None:
+            cmd.append('--config-file=' + config_file)
+        
+        return cmd
 
     return {
         'command': _get_cmd,
