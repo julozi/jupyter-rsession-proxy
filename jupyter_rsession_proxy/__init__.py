@@ -52,7 +52,9 @@ def setup_rserver():
         'launcher_entry': {
             'title': 'RStudio',
             'icon_path': get_icon_path()
-        }
+        },
+        'new_browser_tab': False,
+        'timeout': 60
     }
 
 def setup_rsession():
